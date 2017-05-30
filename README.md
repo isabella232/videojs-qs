@@ -1,5 +1,7 @@
 # videojs-qs
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/videojs/videojs-qs.svg)](https://greenkeeper.io/)
+
 A wrapper for the Node querystring module for Video.js-based players.
 
 ## Installation
