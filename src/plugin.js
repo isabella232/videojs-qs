@@ -16,7 +16,8 @@ const search = querystring.parse(
  */
 const qs = videojs.qs = () => Object.assign({search}, querystring);
 
-videojs.registerPlugin('qs', qs);
+// Cross-compatible with Video.js 5/6.
+(videojs.registerPlugin || videojs.plugin)('qs', qs);
 qs.VERSION = VERSION;
 
 export default qs;
