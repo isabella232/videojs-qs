@@ -1,3 +1,10 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/videojs/videojs-qs/compare/v1.1.0...v1.2.0) (2017-05-31)
+
+### Features
+
+* Add in backward compatibility with Video.js 5. ([1ad0cc5](https://github.com/videojs/videojs-qs/commit/1ad0cc5))
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/videojs/videojs-qs/compare/v1.0.0...v1.1.0) (2017-05-31)
 
