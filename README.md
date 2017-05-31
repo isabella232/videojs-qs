@@ -1,6 +1,8 @@
 # videojs-qs
 
-A wrapper for the Node querystring module for Video.js-based players.
+A wrapper for the [Node querystring module][node-qs] equivalent provided by [rollup-plugin-node-builtins][rpnb] for Video.js-based players.
+
+**Note:** Does not support the `querystring.escape` or `querystring.unescape` properties.
 
 ## Installation
 
@@ -8,51 +10,24 @@ A wrapper for the Node querystring module for Video.js-based players.
 npm install --save videojs-qs
 ```
 
-## Usage
+## API
 
-To include videojs-qs on your website or web application, use any of the following methods.
+There are two ways to use this module/plugin. There is no particular advantage or disadvantage to one or the other - use whichever makes the most sense in your use-case.
 
-### `<script>` Tag
+### `videojs.qs()` Method
 
-This is the simplest case. Get the script in whatever way you prefer and include the plugin _after_ you include [video.js][videojs], so that the `videojs` global is available.
-
-```html
-<script src="//path/to/video.min.js"></script>
-<script src="//path/to/videojs-qs.min.js"></script>
-<script>
-  var player = videojs('my-video');
-
-  player.qs();
-</script>
-```
-
-### Browserify/CommonJS
-
-When using with Browserify, install videojs-qs via npm and `require` the plugin as you would any other module.
+Including this module will add the `qs` method to the `videojs` namespace. This is a function that returns a clone of the [Node querystring built-in module][node-qs].
 
 ```js
-var videojs = require('video.js');
-
-// The actual plugin function is exported by this module, but it is also
-// attached to the `Player.prototype`; so, there is no need to assign it
-// to a variable.
-require('videojs-qs');
-
-var player = videojs('my-video');
-
-player.qs();
+var qs = videojs.qs().parse(window.location.search);
 ```
 
-### RequireJS/AMD
+### `qs` Plugin
 
-When using with RequireJS (or another AMD library), get the script in whatever way you prefer and `require` the plugin as you normally would:
+In addition to the `videojs.qs()` method, a plugin is added that registers a `qs()` method on every player instance. This method behaves identically to the `videojs.qs()` method.
 
 ```js
-require(['video.js', 'videojs-qs'], function(videojs) {
-  var player = videojs('my-video');
-
-  player.qs();
-});
+var qs = player.qs().parse(window.location.search);
 ```
 
 ## License
@@ -60,4 +35,6 @@ require(['video.js', 'videojs-qs'], function(videojs) {
 Apache-2.0. Copyright (c) Brightcove, Inc.
 
 
+[node-qs]: https://nodejs.org/api/querystring.html
+[rpnb]: https://github.com/calvinmetcalf/rollup-plugin-node-builtins
 [videojs]: http://videojs.com/

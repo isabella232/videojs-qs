@@ -4,6 +4,7 @@
  * This includes all dependencies for both the plugin and its tests.
  */
 import babel from 'rollup-plugin-babel';
+import builtins from 'rollup-plugin-node-builtins';
 import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
 import multiEntry from 'rollup-plugin-multi-entry';
@@ -31,6 +32,7 @@ export default {
     multiEntry({
       exports: false
     }),
+    builtins(),
     resolve({
       browser: true,
       main: true,

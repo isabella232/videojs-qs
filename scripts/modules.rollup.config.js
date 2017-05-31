@@ -6,6 +6,7 @@
  * handled by the module system.
  */
 import babel from 'rollup-plugin-babel';
+import builtins from 'rollup-plugin-node-builtins';
 import json from 'rollup-plugin-json';
 
 export default {
@@ -17,6 +18,7 @@ export default {
   },
   legacy: true,
   plugins: [
+    builtins(),
     json(),
     babel({
       babelrc: false,

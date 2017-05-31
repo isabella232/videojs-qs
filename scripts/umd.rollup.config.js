@@ -5,6 +5,7 @@
  * This module DOES include its dependencies.
  */
 import babel from 'rollup-plugin-babel';
+import builtins from 'rollup-plugin-node-builtins';
 import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
 import resolve from 'rollup-plugin-node-resolve';
@@ -20,6 +21,7 @@ export default {
   },
   legacy: true,
   plugins: [
+    builtins(),
     resolve({
       browser: true,
       main: true,
@@ -39,7 +41,7 @@ export default {
         }]
       ],
       plugins: [
-        // 'external-helpers',
+        'external-helpers',
         'transform-object-assign'
       ]
     })

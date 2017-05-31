@@ -1,12 +1,7 @@
-import document from 'global/document';
-
 import QUnit from 'qunit';
 import sinon from 'sinon';
 import videojs from 'video.js';
-
 import plugin from '../src/plugin';
-
-const Player = videojs.getComponent('Player');
 
 QUnit.test('the environment is sane', function(assert) {
   assert.strictEqual(typeof Array.isArray, 'function', 'es5 exists');
@@ -15,44 +10,26 @@ QUnit.test('the environment is sane', function(assert) {
   assert.strictEqual(typeof plugin, 'function', 'plugin is a function');
 });
 
-QUnit.module('videojs-qs', {
+QUnit.test('the qs method returns a querystring clone', function(assert) {
+  assert.strictEqual(typeof videojs.qs, 'function', 'plugin is a function');
 
-  beforeEach() {
+  const qs = videojs.qs();
 
-    // Mock the environment's timers because certain things - particularly
-    // player readiness - are asynchronous in video.js 5. This MUST come
-    // before any player is created; otherwise, timers could get created
-    // with the actual timer methods!
-    this.clock = sinon.useFakeTimers();
+  ['parse', 'stringify'].forEach(k => {
+    assert.strictEqual(typeof qs[k], 'function', `has a ${k}() method`);
+  });
 
-    this.fixture = document.getElementById('qunit-fixture');
-    this.video = document.createElement('video');
-    this.fixture.appendChild(this.video);
-    this.player = videojs(this.video);
-  },
-
-  afterEach() {
-    this.player.dispose();
-    this.clock.restore();
-  }
+  assert.notStrictEqual(videojs.qs(), qs, 'a clone is always returned');
 });
 
-QUnit.test('registers itself with video.js', function(assert) {
-  assert.expect(2);
+QUnit.test('the plugin returns a querystring clone', function(assert) {
+  assert.strictEqual(typeof videojs.getPlugin('qs'), 'function', 'plugin is a function');
 
-  assert.strictEqual(
-    typeof Player.prototype.qs,
-    'function',
-    'videojs-qs plugin was registered'
-  );
+  const qs = videojs.getPlugin('qs')();
 
-  this.player.qs();
+  ['parse', 'stringify'].forEach(k => {
+    assert.strictEqual(typeof qs[k], 'function', `has a ${k}() method`);
+  });
 
-  // Tick the clock forward enough to trigger the player to be "ready".
-  this.clock.tick(1);
-
-  assert.ok(
-    this.player.hasClass('vjs-qs'),
-    'the plugin adds a class to the player'
-  );
+  assert.notStrictEqual(videojs.getPlugin('qs')(), qs, 'a clone is always returned');
 });

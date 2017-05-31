@@ -1,7 +1,7 @@
 {
   "name": "videojs-qs",
   "version": "0.0.0",
-  "description": "A wrapper for the Node querystring module for Video.js-based players.",
+  "description": "A wrapper for the Node querystring module equivalent provided by rollup-plugin-node-builtins for Video.js-based players.",
   "main": "dist/videojs-qs.cjs.js",
   "module": "dist/videojs-qs.es.js",
   "generator-videojs-plugin": {
@@ -58,7 +58,7 @@
   ],
   "dependencies": {
     "global": "^4.3.2",
-    "video.js": "^5.19.2"
+    "video.js": "^6.0.0"
   },
   "devDependencies": {
     "babel-plugin-external-helpers": "^6.22.0",
@@ -85,6 +85,7 @@
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-json": "^2.1.1",
     "rollup-plugin-multi-entry": "^2.0.1",
+    "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-watch": "^3.2.2",
     "semver": "^5.3.0",
