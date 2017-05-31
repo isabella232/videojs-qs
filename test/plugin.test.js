@@ -1,3 +1,4 @@
+import window from 'global/window';
 import QUnit from 'qunit';
 import sinon from 'sinon';
 import videojs from 'video.js';
@@ -32,4 +33,11 @@ QUnit.test('the plugin returns a querystring clone', function(assert) {
   });
 
   assert.notStrictEqual(videojs.getPlugin('qs')(), qs, 'a clone is always returned');
+});
+
+QUnit.test('the querystring clone has an added "search" property matching the parsed window.location.search', function(assert) {
+  const qs = videojs.qs();
+
+  assert.strictEqual(typeof qs.search, 'object', 'the "search" property exists');
+  assert.deepEqual(qs.parse(window.location.search.substr(1)), qs.search, 'the "search" property has the expected contents');
 });
