@@ -1,3 +1,10 @@
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/videojs/videojs-qs/compare/v1.2.0...v1.2.1) (2017-06-01)
+
+### Bug Fixes
+
+* Do not return privately-stored search object. ([5c30463](https://github.com/videojs/videojs-qs/commit/5c30463))
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/videojs/videojs-qs/compare/v1.1.0...v1.2.0) (2017-05-31)
 
