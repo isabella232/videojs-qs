@@ -3,7 +3,7 @@ import videojs from 'video.js';
 import querystring from 'querystring';
 import {version as VERSION} from '../package.json';
 
-const search = querystring.parse(
+const search = () => querystring.parse(
   (window && window.location && window.location.search || '?').substr(1));
 
 /**
@@ -14,7 +14,7 @@ const search = querystring.parse(
  * @see {@link https://nodejs.org/api/querystring.html|Node querystring API documentation} for more information.
  * @return {Object}
  */
-const qs = videojs.qs = () => Object.assign({search}, querystring);
+const qs = videojs.qs = () => Object.assign({search: search()}, querystring);
 
 // Cross-compatible with Video.js 5/6.
 (videojs.registerPlugin || videojs.plugin)('qs', qs);
